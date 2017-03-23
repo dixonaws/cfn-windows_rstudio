@@ -21,8 +21,8 @@ The template creates the following resources:
 
 Installed software:
 <ul>
-  <li>RStudio 1.10</li>
-  <li>R 2.11.1</li>
+  <li>RStudio 1.0.1036</li>
+  <li>R 3.3.3</li>
   <li>Firefox</li>
   <li>Chrome</li>
 </ul>
