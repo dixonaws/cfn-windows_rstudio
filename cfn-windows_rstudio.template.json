@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "AWS Service Catalog sample template. Creates an Amazon EC2 instance running Ubuntu 16.04. This example creates an EC2 security group for the instance to give you SSH access. **WARNING** This template creates an Amazon EC2 instance. You will be billed for the AWS resources used if you create a stack from this template.",
+  "Description" : "AWS Service Catalog sample template. Creates an Amazon EC2 instance running Windows Server 2012 R2. This example creates an EC2 security group for the instance to give users RDP access from anywhere. **WARNING** This template creates an Amazon EC2 instance. You will be billed for the AWS resources used if you create a stack from this template.",
 
   "Parameters" : {
     "KeyName": {
@@ -16,7 +16,7 @@
       "AllowedValues" : [ "t2.micro", "t2.small", "t2.medium", "m3.medium", "m3.large", "m3.xlarge", "m3.2xlarge", "m4.xlarge", "m4.2xlarge" ]
     },
 
-    "SSHLocation" : {
+    "RemoteLocation" : {
       "Description" : "The IP address range that can RDP to the EC2 instance.",
       "Type": "String",
       "MinLength": "9",
@@ -34,19 +34,19 @@
         "Parameters" : ["InstanceType"]
       },{
         "Label" : {"default": "Security configuration"},
-        "Parameters" : ["KeyName", "SSHLocation"]
+        "Parameters" : ["KeyName", "RemoteLocation"]
       }],
       "ParameterLabels" : {
         "InstanceType": {"default": "Server size:"},
         "KeyName": {"default": "Key pair:"},
-        "SSHLocation": {"default": "CIDR range:"}
+        "RemoteLocation": {"default": "CIDR range:"}
       }
     }
   },
 
   "Mappings" : {
     "AWSRegionArch2AMI" : {
-      "us-east-1"      : { "HVM64" : "ami-f2ee59e4" }
+      "us-east-1"      : { "HVM64" : "ami-049d2e12" }
       
     }
 
@@ -66,12 +66,12 @@
     "InstanceSecurityGroup" : {
       "Type" : "AWS::EC2::SecurityGroup",
       "Properties" : {
-        "GroupDescription" : "Enable SSH access via port 22",
+        "GroupDescription" : "Enable RDP access via port 3389",
         "SecurityGroupIngress" : [ {
           "IpProtocol" : "tcp",
-          "FromPort" : "22",
-          "ToPort" : "22",
-          "CidrIp" : { "Ref" : "SSHLocation"}
+          "FromPort" : "3389",
+          "ToPort" : "3389",
+          "CidrIp" : { "Ref" : "RemoteLocation"}
         } ]
       }
     }
