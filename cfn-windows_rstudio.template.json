@@ -16,6 +16,15 @@
       "AllowedValues" : [ "t2.micro", "t2.small", "t2.medium", "m3.medium", "m3.large", "m3.xlarge", "m3.2xlarge", "m4.xlarge", "m4.2xlarge" ]
     },
 
+    "AdminPassword" : {
+      "Description" : "Administrator password (must meet complexity requirements, <=16 characters)",
+      "Type" : "String",
+      "Default" : "1loveAWS!@#",
+      "NoEcho" : "true",
+      "MinLength": "1",
+      "MaxLength": "16"
+    },
+
     "RemoteLocation" : {
       "Description" : "The IP address range that can RDP to the EC2 instance.",
       "Type": "String",
@@ -46,7 +55,7 @@
 
   "Mappings" : {
     "AWSRegionArch2AMI" : {
-      "us-east-1"      : { "HVM64" : "ami-049d2e12" }
+      "us-east-1"      : { "HVM64" : "ami-966fdc80" }
       
     }
 
@@ -59,7 +68,12 @@
         "InstanceType" : { "Ref" : "InstanceType" },
         "SecurityGroups" : [ { "Ref" : "InstanceSecurityGroup" } ],
         "KeyName" : { "Ref" : "KeyName" },
-        "ImageId" : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" }, "HVM64" ] }
+        "ImageId" : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" }, "HVM64" ] },
+        "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
+          "powershell C:\\Users\\Administrator\\changeAdminPassword.ps1 ", { "Ref": "AdminPassword" }, " >> pwchanged.log\n"
+
+        ]]}}
+
       }
     },
 
@@ -85,6 +99,10 @@
     "PublicIPAddress" : {
       "Description" : "Public IP address of the new EC2 instance",
       "Value" : { "Fn::GetAtt" : [ "EC2Instance", "PublicIp" ] }
+    },
+    "AdminPassword" : {
+      "Description" : "Administrator password for this instace",
+      "Value" : { "Ref" : "AdminPassword" }
     }
   }
 }

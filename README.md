@@ -27,6 +27,7 @@ Installed software:
   <li>R 3.3.3</li>
   <li>Firefox</li>
   <li>Chrome</li>
+  <li>VIM 8</li>
 </ul>
 
 Configuration
@@ -41,3 +42,4 @@ The only parameter supported is KeyName: the name of the private key that will b
 <p>
 
 TODO: add puppet manifest to build Ubuntu AMI with R and R Studio installed
+TODO: call "C:\Users\Administrator\changeAdminPassword.ps1 (password)" from UserData

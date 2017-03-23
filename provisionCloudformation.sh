@@ -1,4 +1,6 @@
 #!/bin/bash
+# tested with the following version (aws --version) on macOS 10.12.3
+# aws-cli/1.11.65 Python/2.7.10 Darwin/16.4.0 botocore/1.5.28
 
 # the first argument should be the profile, the second argument should be the URL of the template
 aws_profile=$1
