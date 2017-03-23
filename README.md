@@ -5,8 +5,10 @@ Included is a simple bash script, provisionCloudFormation, which is just a wrapp
 Example with your template in the current directory:
     ./provisionCloudformation.sh dixonaws@amazon.com cfn-windows_rstudio.template.json
 
+The script gives a random name to the stack, here referenced as [stackname]
+
 You can tear down a stack using the cloudformation CLI:
-    aws --profile dixonaws@amazon.com --region us-east-1 cloudformation delete-stack --stack name [foo]
+    aws --profile dixonaws@amazon.com --region us-east-1 cloudformation delete-stack --stack name [stackname]
 
 Of course, you'll need to define your AWS credential in your profile, per http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 
