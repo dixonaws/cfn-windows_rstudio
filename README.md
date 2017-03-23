@@ -12,14 +12,27 @@ Of course, you'll need to define your AWS credential in your profile, per http:/
 
 The template creates the following resources:
 <ul>
-  <li>Linux with R Studio in us-east-1</li>
-  <li>Windows Server 2012 R2</li>
+    <li>One EC2 instance with Windows 2012 R2</li>
+    <li>One security group</li>
+    <li>One elastic IP</li>
+</ul>
+<p>
+
+
+Installed software:
+<ul>
   <li>RStudio 1.10</li>
   <li>R 2.11.1</li>
+  <li>Firefox</li>
+  <li>Chrome</li>
+</ul>
+
+Configuration
+<ul>
   <li>Security group with access to port tcp/3389 for RDP from 0.0.0.0/0 (anywhere)</li>
-  <li>Public IP</li>
   <li>Login as Administrator with default password 1loveAWS!@# via RDP</li>
-     
+  <li>Clock configured to EST</li>
+  <li>IE ESC off</li>      
  </ul>
 
 The only parameter supported is KeyName: the name of the private key that will be used to access the instances created by the template. This key must exist before running the template.
