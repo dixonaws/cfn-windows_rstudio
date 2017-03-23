@@ -1,9 +1,9 @@
-# cfn-linux_rstudio
-Cloudformation template (JSON) for a Linux box with RStudio installed
+# cfn-windows_rstudio
+Cloudformation template (JSON) for a Windows box with RStudio installed, intended for use with AWS Service Catalog
 
 Included is a simple bash script, provisionCloudFormation, which is just a wrapper around the cloudformation CLI.
 Example with your template in the current directory:
-    ./provisionCloudformation.sh dixonaws@amazon.com cfn-linux_rstudio.template.json
+    ./provisionCloudformation.sh dixonaws@amazon.com cfn-windows_rstudio.template.json
 
 You can tear down a stack using the cloudformation CLI:
     aws --profile dixonaws@amazon.com --region us-east-1 cloudformation delete-stack --stack name [foo]
@@ -13,12 +13,12 @@ Of course, you'll need to define your AWS credential in your profile, per http:/
 The template creates the following resources:
 <ul>
   <li>Linux with R Studio in us-east-1</li>
-  <li>Ubuntu 16.04</li>
+  <li>Windows Server 2012 R2</li>
   <li>RStudio 1.10</li>
   <li>R 2.11.1</li>
-  <li>Security group with access to port tcp/22 for SSH</li>
+  <li>Security group with access to port tcp/3389 for RDP from 0.0.0.0/0 (anywhere)</li>
   <li>Public IP</li>
-  <li>Login as ubuntu (also has sudo privileges)</li>
+  <li>Login as Administrator with default password 1loveAWS!@# via RDP</li>
      
  </ul>
 
